@@ -1,22 +1,20 @@
 class BinaryLifting {
 public:
   int n, l;
-  vector<vector<array<int, 2>>> adj;
+  vector<vector<array<int, 2>>> &adj;
 
   int timer;
   vector<int> tin, tout;
   vector<vector<int>> up;
   vector<vector<int>> mx;
 
-  BinaryLifting(int n, vector<vector<array<int, 2>>>& adj) {
-    this->n = n;
+  BinaryLifting(int n, vector<vector<array<int, 2>>>& adj) : n(n), adj(adj) {
     tin.resize(n);
     tout.resize(n);
     timer = 0;
     l = ceil(log2(n));
     up.assign(n, vector<int>(l + 1));
     mx.assign(n, vector<int>(l + 1, INT_MIN));
-    this->adj = adj;
   }
 
   void dfs(int v, int p, int we) {
